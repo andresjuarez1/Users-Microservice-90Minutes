@@ -6,7 +6,7 @@ import { Status } from '../../domain/entities/Status';
 
 export class UserDaoMapper {
     static toDomain(userEntity: UserEntity): User{
-        let contact = new Contact(userEntity.dataValues.name, userEntity.dataValues.lastName, userEntity.dataValues.phoneNumber);
+        let contact = new Contact(userEntity.dataValues.name, userEntity.dataValues.lastName, userEntity.dataValues.phoneNumber, userEntity.dataValues.address);
         let credentials = new Credentials(userEntity.dataValues.email, userEntity.dataValues.password);
         let status = new Status(userEntity.dataValues.token,userEntity.dataValues.verifiedAt);
         let user = new User(contact, credentials, status);
@@ -25,7 +25,8 @@ export class UserDaoMapper {
                 password: user.credentials.password,
                 name: user.contact.name,
                 lastName: user.contact.lastName,
-                phoneNumber: user.contact.phoneNumber
+                phoneNumber: user.contact.phoneNumber,
+                address: user.contact.address
             }
         );
     }

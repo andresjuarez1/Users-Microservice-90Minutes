@@ -3,5 +3,6 @@ export class Contact {
         public name: string,
         public lastName: string,
         public phoneNumber: string,
-    ) {}
+        public address: string,
+    ) { }
 }

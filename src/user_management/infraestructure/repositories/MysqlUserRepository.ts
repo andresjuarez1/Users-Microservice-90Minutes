@@ -1,5 +1,3 @@
-// MysqlUserRepository.ts
-
 import { UserInterface } from "../../domain/ports/UserInterface";
 import { User } from "../../domain/entities/User";
 import UserEntity from '../daos/UserEntity';
