@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 import { EncryptService } from '../../domain/services/EncriptServices';
 import { SignUpUserCase } from '../../application/use_case/SignUpUserCase';
 
-export class SingUpUserController {
+export class SignUpUserController {
 
     constructor(readonly useCase: SignUpUserCase, readonly emailService: EmailService, readonly encryptionService: EncryptService) {
     }

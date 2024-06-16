@@ -7,16 +7,21 @@ export class SignUpUserCase {
     constructor(readonly userInterface: UserInterface) {}
 
     async execute(req: Request): Promise<BaseResponse> {
-        let request = UserDtoMapper.toSignUpUserRequest(req);
-        if (!request) {
-            return new BaseResponse(null, 'Bad request', false, 400);
+        try {
+            let request = UserDtoMapper.toSignUpUserRequest(req);
+            if (!request) {
+                return new BaseResponse(null, 'Bad request', false, 400);
+            }
+            let user = UserDtoMapper.toDomainUserSignUp(request);
+            let result = await this.userInterface.sign_up(user);
+            if (result) {
+                let response = UserDtoMapper.toUserResponse(result);
+                return new BaseResponse(response, 'User created successfully', true, 201);
+            }
+            return new BaseResponse(null, 'User not created', false, 400);
+        } catch (error) {
+            console.error('Error in SignUpUserCase:', error);
+            return new BaseResponse(null, 'Internal server error', false, 500);
         }
-        let user = UserDtoMapper.toDomainUserSignUp(request);
-        let result = await this.userInterface.sign_up(user);
-        if (result) {
-            let response = UserDtoMapper.toUserResponse(result);
-            return new BaseResponse(response, 'User created successfully', true, 201);
-        }
-        return new BaseResponse(null, 'User not created', false, 400);
     }
 }

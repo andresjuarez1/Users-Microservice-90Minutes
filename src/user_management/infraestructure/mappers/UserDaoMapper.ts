@@ -25,7 +25,8 @@ export class UserDaoMapper {
                 password: user.credentials.password,
                 name: user.contact.name,
                 lastName: user.contact.lastName,
-                phoneNumber: user.contact.phoneNumber
+                phoneNumber: user.contact.phoneNumber,
+                address: user.contact.address
             }
         );
     }

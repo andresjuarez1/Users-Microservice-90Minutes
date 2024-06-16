@@ -10,6 +10,7 @@ class UserEntity extends Model {
     public name!: string;
     public lastName!: string;
     public phoneNumber!: string;
+    public address!: string;
 }
 
 UserEntity.init(
@@ -44,6 +45,10 @@ UserEntity.init(
             allowNull: false,
         },
         phoneNumber: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        address: {
             type: DataTypes.STRING,
             allowNull: false,
         },

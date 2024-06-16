@@ -4,24 +4,19 @@ import { Status } from './Status';
 import { Contact } from './Contact';
 import { Credentials } from './Credentials';
 
-
-
 export class User implements ValidatableEntity {
-
     public uuid: string;
-    
     public contact: Contact;
-    
     public credentials: Credentials;
-    
     public status: Status;
-
+    public hasUsedPromotion: boolean;
 
     constructor(contact: Contact, credentials: Credentials, status: Status) {
         this.uuid = uuidv4();
-        this.contact=contact
-        this.credentials=credentials
-        this.status=status
+        this.contact = contact;
+        this.credentials = credentials;
+        this.status = status;
+        this.hasUsedPromotion = false;
     }
 
     async validate() {

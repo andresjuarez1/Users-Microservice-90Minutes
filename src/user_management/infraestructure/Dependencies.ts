@@ -13,7 +13,7 @@ import GetUserByUuidController from "./controllers/GetUserByUuidController";
 import { ListUsersController } from "./controllers/ListUsersController";
 import { SignInUserController } from "./controllers/SignInUserController";
 import { SignOutUserController } from "./controllers/SignOutUserController";
-import { SingUpUserController } from "./controllers/SignUpUserController";
+import { SignUpUserController } from "./controllers/SignUpUserController";
 import { UpdateUserController } from "./controllers/UpdateUserController";
 import { MysqlUserRepository } from "./repositories/MysqlUserRepository";
 import { ByEncryptServices } from "./services/ByEncryptServices";
@@ -36,7 +36,7 @@ export const singInUserCase = new SignInUserUseCase(databaseRepository);
 export const singOutUserCase = new SignOutUserCase(databaseRepository);
 
 export const singInUserController = new SignInUserController(singInUserCase, encriptServices, tokenServices);
-export const singUpUserController = new SingUpUserController(singUpUserCase, nodemailerEmailService, encriptServices);
+export const singUpUserController = new SignUpUserController(singUpUserCase, nodemailerEmailService, encriptServices);
 export const deleteUserController = new DeleteUserController(deleteUserUseCase);
 export const getByUuidController = new GetUserByUuidController(getUserUseCase);
 export const getByEmailController = new GetUserByEmailController(getUserUseCase);
