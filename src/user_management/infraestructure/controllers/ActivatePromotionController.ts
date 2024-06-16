@@ -1,15 +1,15 @@
-import { ApplyFirstTimePromotionUseCase } from "../../application/use_case/PromotionUseCase";
+import { ActivatePromotionUseCase } from "../../application/use_case/ActivatePromotionUseCase";
 import { Request, Response } from "express";
 
 export class ActivatePromotionController {
-    constructor(private applyFirstTimePromotionUseCase: ApplyFirstTimePromotionUseCase) {}
+    constructor(private activatePromotionUseCase: ActivatePromotionUseCase) {}
 
     async execute(req: Request, res: Response) {
         try {
             const userId = req.params.uuid;
-            const discount = await this.applyFirstTimePromotionUseCase.execute(userId);
+            const discount = await this.activatePromotionUseCase.execute(userId);
             res.status(200).json({
-                data: { discount },
+                data: { updatedTo: discount.hasUsedPromotion},
                 message: "Promotion activated successfully",
                 success: true,
                 statusCode: 200

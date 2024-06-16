@@ -43,7 +43,7 @@ export const activateUserCase = new ActivateUserCase(databaseRepository);
 export const singInUserCase = new SignInUserUseCase(databaseRepository);
 export const singOutUserCase = new SignOutUserCase(databaseRepository);
 export const applyFirstTimePromotionUseCase = new ApplyFirstTimePromotionUseCase(databaseRepository, promotionService);
-export const activatePromotionUseCase = new ActivatePromotionUseCase(databaseRepository); // Añadir esta línea
+export const activatePromotionUseCase = new ActivatePromotionUseCase(databaseRepository); 
 
 export const singInUserController = new SignInUserController(singInUserCase, encriptServices, tokenServices);
 export const singUpUserController = new SignUpUserController(singUpUserCase, nodemailerEmailService, encriptServices, applyFirstTimePromotionUseCase);
@@ -54,5 +54,5 @@ export const updateUserController = new UpdateUserController(updateUserUseCase, 
 export const listUsersController = new ListUsersController(listUsersCase);
 export const activateUserController = new ActivateUserController(activateUserCase);
 export const singOutUserController = new SignOutUserController(singOutUserCase);
-export const activatePromotionController = new ActivatePromotionController(applyFirstTimePromotionUseCase); 
+export const activatePromotionController = new ActivatePromotionController(activatePromotionUseCase); 
 export const getPromotionStatusController = new GetPromotionStatusController(databaseRepository);

@@ -11,6 +11,7 @@ class UserEntity extends Model {
     public lastName!: string;
     public phoneNumber!: string;
     public address!: string;
+    public hasUsedPromotion!: boolean;
 }
 
 UserEntity.init(
@@ -51,6 +52,10 @@ UserEntity.init(
         address: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        hasUsedPromotion: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
         },
     },
     {

@@ -9,7 +9,7 @@ export class UserDaoMapper {
         let contact = new Contact(userEntity.dataValues.name, userEntity.dataValues.lastName, userEntity.dataValues.phoneNumber, userEntity.dataValues.address);
         let credentials = new Credentials(userEntity.dataValues.email, userEntity.dataValues.password);
         let status = new Status(userEntity.dataValues.token,userEntity.dataValues.verifiedAt);
-        let user = new User(contact, credentials, status, false);
+        let user = new User(contact, credentials, status, userEntity.dataValues.hasUsedPromotion);
         user.uuid = userEntity.dataValues.uuid;
         return user;
     }
@@ -26,7 +26,8 @@ export class UserDaoMapper {
                 name: user.contact.name,
                 lastName: user.contact.lastName,
                 phoneNumber: user.contact.phoneNumber,
-                address: user.contact.address
+                address: user.contact.address,
+                hasUsedPromotion: user.hasUsedPromotion
             }
         );
     }

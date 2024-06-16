@@ -53,8 +53,7 @@ export class MysqlUserRepository implements UserInterface {
     async update(uuid: string, user: User, transaction?: any): Promise<User | null> {
         try {
             return await this.withTransaction(async (transaction: any) => {
-                const userEntity = UserDaoMapper.toEntity(user);
-                await UserEntity.update(userEntity, { where: { uuid }, transaction });
+                await UserEntity.update(user, { where: { uuid }, transaction });
                 return user;
             });
         } catch (error) {

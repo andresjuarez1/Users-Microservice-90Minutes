@@ -12,6 +12,7 @@ export class GetPromotionStatusController {
                 res.status(404).json({ message: "User not found", success: false });
                 return;
             }
+            console.log("User found:", user);
             res.status(200).json({ hasUsedPromotion: user.hasUsedPromotion });
         } catch (error) {
             if (error instanceof Error) {

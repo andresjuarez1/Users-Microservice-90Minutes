@@ -15,10 +15,6 @@ export class ApplyFirstTimePromotionUseCase {
 
         const discount = this.promotionService.applyFirstTimePromotion(user);
 
-        if (discount > 0) {
-            user.hasUsedPromotion = true;
-            await this.userRepository.update(user.uuid, user);
-        }
 
         return discount;
     }
