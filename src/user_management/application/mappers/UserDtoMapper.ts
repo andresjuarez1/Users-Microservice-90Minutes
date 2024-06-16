@@ -42,14 +42,14 @@ export class UserDtoMapper {
         let contact = new Contact(signUpUserRequest.name, signUpUserRequest.lastName, signUpUserRequest.phoneNumber, signUpUserRequest.address);
         let credentials = new Credentials(signUpUserRequest.email, signUpUserRequest.password);
         let status = new Status("", new Date());
-        return new User(contact, credentials, status);
+        return new User(contact, credentials, status, false);
     }
 
     static toDomainUserUpdate(updateUserRequest: UpdateUserRequest): User {
         let contact = new Contact(updateUserRequest.name, updateUserRequest.lastName, updateUserRequest.phoneNumber, updateUserRequest.address);
         let credentials = new Credentials(updateUserRequest.email, updateUserRequest.password);
         let status = new Status("", new Date());
-        return new User(contact, credentials, status);
+        return new User(contact, credentials, status, false);
     }
 
 

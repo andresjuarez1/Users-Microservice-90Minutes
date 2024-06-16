@@ -11,12 +11,12 @@ export class User implements ValidatableEntity {
     public status: Status;
     public hasUsedPromotion: boolean;
 
-    constructor(contact: Contact, credentials: Credentials, status: Status) {
+    constructor(contact: Contact, credentials: Credentials, status: Status, hasUsedPromotion: false) {
         this.uuid = uuidv4();
         this.contact = contact;
         this.credentials = credentials;
         this.status = status;
-        this.hasUsedPromotion = false;
+        this.hasUsedPromotion = hasUsedPromotion;
     }
 
     async validate() {
