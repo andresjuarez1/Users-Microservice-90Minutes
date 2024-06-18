@@ -21,7 +21,7 @@ let server = null;
 
 async function startServer() {
     server = app.listen(PORT, HOST, () => {
-        signale.success(`Server is running on http://${HOST}:${PORT}`);
+        signale.success(`Server running on http://${HOST}:${PORT}`);
     });
 }
 startServer();
