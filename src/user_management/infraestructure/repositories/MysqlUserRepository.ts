@@ -4,10 +4,14 @@ import UserEntity from '../daos/UserEntity';
 import { EncryptService } from "../../domain/services/EncriptServices";
 import { TokenServices } from "../../domain/services/TokenServices";
 import { UserDaoMapper } from '../mappers/UserDaoMapper';
-import sequelize from "../../../database/mysqldb";
+import { sequelize, initialize } from "../../../database/mysqldb";
 
 export class MysqlUserRepository implements UserInterface {
     private async withTransaction(callback: (transaction: any) => Promise<any>): Promise<any> {
+        await initialize(); 
+        if (!sequelize) {
+            throw new Error('Sequelize no está inicializado');
+        }
         const transaction = await sequelize.transaction();
         try {
             const result = await callback(transaction);
@@ -20,6 +24,10 @@ export class MysqlUserRepository implements UserInterface {
     }
 
     async findByEmail(email: string, transaction?: any): Promise<User | null> {
+        await initialize(); 
+        if (!sequelize) {
+            throw new Error('Sequelize no está inicializado');
+        }
         try {
             return await UserEntity.findOne({ where: { email }, transaction })
                 .then(userEntity => userEntity ? UserDaoMapper.toDomain(userEntity) : null);
@@ -29,8 +37,11 @@ export class MysqlUserRepository implements UserInterface {
         }
     }
 
-
-     async findByUUID(uuid: string, transaction?: any): Promise<User | null> {
+    async findByUUID(uuid: string, transaction?: any): Promise<User | null> {
+        await initialize(); 
+        if (!sequelize) {
+            throw new Error('Sequelize no está inicializado');
+        }
         try {
             return await UserEntity.findByPk(uuid, { transaction })
                 .then(userEntity => userEntity ? UserDaoMapper.toDomain(userEntity) : null);
@@ -41,6 +52,10 @@ export class MysqlUserRepository implements UserInterface {
     }
 
     async delete(uuid: string, transaction?: any): Promise<boolean> {
+        await initialize(); 
+        if (!sequelize) {
+            throw new Error('Sequelize no está inicializado');
+        }
         try {
             await UserEntity.destroy({ where: { uuid }, transaction });
             return true;
@@ -51,6 +66,10 @@ export class MysqlUserRepository implements UserInterface {
     }
 
     async update(uuid: string, user: User, transaction?: any): Promise<User | null> {
+        await initialize();
+        if (!sequelize) {
+            throw new Error('Sequelize no está inicializado');
+        }
         try {
             return await this.withTransaction(async (transaction: any) => {
                 await UserEntity.update(user, { where: { uuid }, transaction });
@@ -62,8 +81,11 @@ export class MysqlUserRepository implements UserInterface {
         }
     }
 
-
     async list(transaction?: any): Promise<User[] | null> {
+        await initialize(); 
+        if (!sequelize) {
+            throw new Error('Sequelize no está inicializado');
+        }
         try {
             const userEntities = await UserEntity.findAll({ transaction });
             return userEntities.map(userEntity => UserDaoMapper.toDomain(userEntity));
@@ -74,6 +96,10 @@ export class MysqlUserRepository implements UserInterface {
     }
 
     async updateUserVerifiedAt(uuid: string, transaction?: any): Promise<boolean> {
+        await initialize(); 
+        if (!sequelize) {
+            throw new Error('Sequelize no está inicializado');
+        }
         try {
             return await this.withTransaction(async (transaction: any) => {
                 await UserEntity.update({ verifiedAt: new Date() }, { where: { uuid }, transaction });
@@ -86,6 +112,10 @@ export class MysqlUserRepository implements UserInterface {
     }
 
     async sign_up(user: User): Promise<User | null> {
+        await initialize(); 
+        if (!sequelize) {
+            throw new Error('Sequelize no está inicializado');
+        }
         try {
             return await this.withTransaction(async (transaction: any) => {
                 const userEntity = UserDaoMapper.toEntity(user);
@@ -99,6 +129,10 @@ export class MysqlUserRepository implements UserInterface {
     }
 
     async sign_in(email: string, password: string, encryptionService: EncryptService, tokenServices: TokenServices): Promise<User | null> {
+        await initialize(); 
+        if (!sequelize) {
+            throw new Error('Sequelize no está inicializado');
+        }
         try {
             return await this.withTransaction(async (transaction: any) => {
                 let user = await this.findByEmail(email, transaction);
@@ -120,6 +154,10 @@ export class MysqlUserRepository implements UserInterface {
     }
 
     async sign_out(uuid: string, transaction?: any): Promise<boolean> {
+        await initialize(); 
+        if (!sequelize) {
+            throw new Error('Sequelize no está inicializado');
+        }
         try {
             return await this.withTransaction(async (transaction: any) => {
                 await UserEntity.update({ token: '' }, { where: { uuid }, transaction });
