@@ -16,6 +16,7 @@
     "@types/node": "^20.9.2",
     "@types/signale": "^1.4.7",
     "amqplib": "^0.10.4",
+    "aws-sdk": "^2.1644.0",
     "bcrypt": "^5.1.1",
     "class-validator": "^0.14.1",
     "cors": "^2.8.5",

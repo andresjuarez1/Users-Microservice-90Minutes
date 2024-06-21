@@ -4,7 +4,6 @@ WORKDIR /usr/app
 
 COPY package*.json ./
 COPY src ./src
-COPY .env ./
 
 RUN npm install
 RUN npm install -g ts-node-dev
