@@ -2,7 +2,7 @@
 import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
 import { Signale } from 'signale';
-import { getDatabaseCredentials, DatabaseCredentials } from '../aws/parameter';
+// import { getDatabaseCredentials, DatabaseCredentials } from '../aws/parameter';
 
 dotenv.config();
 
@@ -11,7 +11,17 @@ const signale = new Signale();
 let sequelize: Sequelize | null = null;
 
 async function initializeSequelize(): Promise<Sequelize> {
-    const credentials: DatabaseCredentials = await getDatabaseCredentials();
+    // const credentials: DatabaseCredentials = await getDatabaseCredentials();
+    const credentials = {
+        name: process.env.DB_DATABASE ||
+            'user_management',
+        user: process.env.DB_USER
+            || 'root',
+        password: process.env.DB_PASSWORD
+            || 'root', 
+        host: process.env.DB_HOST
+            || 'localhost'
+    };
 
     const sequelizeInstance = new Sequelize(credentials.name, credentials.user, credentials.password, {
         host: credentials.host,
@@ -31,7 +41,7 @@ async function initializeSequelize(): Promise<Sequelize> {
         signale.success('Conexión a la base de datos exitosa');
     } catch (error) {
         signale.error('Error al conectar a la base de datos:', error);
-        throw error; // Propagar el error si la conexión falla
+        throw error;
     }
 
     return sequelizeInstance;

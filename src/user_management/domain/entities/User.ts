@@ -11,7 +11,7 @@ export class User implements ValidatableEntity {
     public status: Status;
     public hasUsedPromotion: boolean;
 
-    constructor(contact: Contact, credentials: Credentials, status: Status, hasUsedPromotion: false) {
+    constructor(contact: Contact, credentials: Credentials, status: Status, hasUsedPromotion: boolean) {
         this.uuid = uuidv4();
         this.contact = contact;
         this.credentials = credentials;

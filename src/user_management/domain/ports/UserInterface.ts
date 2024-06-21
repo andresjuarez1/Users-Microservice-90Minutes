@@ -12,5 +12,4 @@ export interface UserInterface {
     sign_up(user: User): Promise<User | null>;
     sign_in (email:string, password:string, encryptionService: EncryptService, tokenServices: TokenServices):Promise<User|null>;
     sign_out (uuid:string):Promise<boolean>; 
-
 }

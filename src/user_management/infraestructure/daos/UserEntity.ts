@@ -70,11 +70,19 @@ async function initializeModel() {
             modelName: 'User',
         }
     );
+
+    await UserEntity.sync({ force: false }).then(() => {
+        console.log('Tabla UserEntity sincronizada');
+    }).catch(error => {
+        console.error('Error al sincronizar el modelo UserEntity:', error);
+    });
 }
 
 initializeModel().catch(error => {
     console.error('Error initializing model:', error);
     process.exit(1); // Terminar el proceso si la inicialización falla
 });
+
+
 
 export default UserEntity;
