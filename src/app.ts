@@ -12,7 +12,7 @@ const signale = new Signale();
 app.use(cors());
 
 const HOST:string = process.env.HOST_SERVER || '0.0.0.0';
-const PORT:number  = Number(process.env.PORT_SERVER) || 3002;
+const PORT:number  = Number(process.env.PORT_SERVER) || 8080;
 
 app.use(express.json()); 
 app.use(morgan('dev'))
