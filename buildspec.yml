@@ -1,5 +1,12 @@
 version: 0.2
 
+env:
+  parameter-store:
+    DB_HOST: "/90minutes/dev/services/users/database_host"
+    DB_USER: "/90minutes/dev/services/users/database_user"
+    DB_PASSWORD: "/90minutes/dev/services/users/database_password"
+    DB_DATABASE: "/90minutes/dev/services/users/database_name"
+
 phases:
   install:
     runtime-versions:
