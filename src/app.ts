@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import {Signale} from "signale";
 
 import { setupUserEndpoints } from './user_management/infraestructure/endpoints/UserEndpoints';
+import { sendMembershipData } from './user_management/infraestructure/Dependencies';
+
 import cors from 'cors';
 dotenv.config();
 
@@ -25,5 +27,9 @@ async function startServer() {
     });
 }
 startServer();
+
+sendMembershipData.listenForMembershipData()
+    .then(() => console.log('Listening for membership data...'))
+    .catch(error => console.error('Error starting membership data listener:', error));
 
 export { app, server };

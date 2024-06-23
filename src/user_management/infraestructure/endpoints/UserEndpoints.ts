@@ -1,5 +1,5 @@
 import { Express } from "express";
-import { activateUserController, deleteUserController, getByUuidController, listUsersController, singInUserController, singOutUserController, singUpUserController, updateUserController, activatePromotionController, getPromotionStatusController } from "../Dependencies";
+import { activateUserController, deleteUserController, getByUuidController, listUsersController, singInUserController, singOutUserController, singUpUserController, updateUserController, activatePromotionController, getPromotionStatusController, getStatusMembershipController } from "../Dependencies";
 
 export function setupUserEndpoints(app: Express) {
     app.get(`/health`, (req, res) => {
@@ -10,8 +10,9 @@ export function setupUserEndpoints(app: Express) {
     app.get(`/:uuid`, getByUuidController.execute.bind(getByUuidController));
     app.delete(`/:uuid`, deleteUserController.execute.bind(deleteUserController));
     app.get(`/activate/:uuid`, activateUserController.execute.bind(activateUserController));
-    app.get(`/promotion/:uuid`, (req, res) => activatePromotionController.execute(req, res));
+    app.put(`/promotion/:uuid`, (req, res) => activatePromotionController.execute(req, res));
     app.get(`/promotion/status/:uuid`, (req, res) => getPromotionStatusController.execute(req, res));
     app.get(`/`, listUsersController.execute.bind(listUsersController));
     app.get(`/sign_out/:uuid`, singOutUserController.execute.bind(singOutUserController));
+    app.put(`/membership/uuid`, getStatusMembershipController.execute.bind(getStatusMembershipController));
 }

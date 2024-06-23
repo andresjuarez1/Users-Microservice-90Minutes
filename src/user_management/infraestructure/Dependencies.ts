@@ -8,6 +8,8 @@ import { SignUpUserCase } from "../application/use_case/SignUpUserCase";
 import { UpdateUserUseCase } from "../application/use_case/UpdateUserCase";
 import { ApplyFirstTimePromotionUseCase } from "../application/use_case/PromotionUseCase";
 import { ActivatePromotionUseCase } from "../application/use_case/ActivatePromotionUseCase"; 
+import { GetStatusMembershipUseCase } from "../application/use_case/GetStatusMembershipUseCase";
+import { AddMembershipUseCase} from "../application/use_case/AddMembershipUseCase";
 
 import { ActivateUserController } from "./controllers/ActivateUserController";
 import { DeleteUserController } from "./controllers/DeleteUserController";
@@ -20,6 +22,8 @@ import { SignUpUserController } from "./controllers/SignUpUserController";
 import { UpdateUserController } from "./controllers/UpdateUserController";
 import { GetPromotionStatusController } from "./controllers/GetPromotionController";
 import { ActivatePromotionController } from "./controllers/ActivatePromotionController";
+import { GetStatusMembershipController } from "./controllers/GetStatusMembershipController";
+import { AddMembershipController } from "./controllers/AddMembershipController";
 
 import { MysqlUserRepository } from "./repositories/MysqlUserRepository";
 import { PromotionService } from "../domain/services/PromotionService";
@@ -27,12 +31,17 @@ import { PromotionService } from "../domain/services/PromotionService";
 import { ByEncryptServices } from "./services/ByEncryptServices";
 import { NodemailerEmailService } from "./services/NodemailerEmailService";
 import { TokenServices } from "./services/TokenServices";
+import { SendMembershipData } from "./services/SendMembershipData";
+import { MysqlMembershipRepository } from "./repositories/MysqlMembershipRepository";
 
+export const sendMembershipData = new SendMembershipData();
 export const databaseRepository = new MysqlUserRepository();
+export const databaseMembershipRepository = new MysqlMembershipRepository();
 export const encriptServices = new ByEncryptServices();
 export const nodemailerEmailService = new NodemailerEmailService();
 export const tokenServices = new TokenServices();
 export const promotionService = new PromotionService();
+
 
 export const singUpUserCase = new SignUpUserCase(databaseRepository);
 export const getUserUseCase = new GetByUserCase(databaseRepository);
@@ -44,7 +53,10 @@ export const singInUserCase = new SignInUserUseCase(databaseRepository);
 export const singOutUserCase = new SignOutUserCase(databaseRepository);
 export const applyFirstTimePromotionUseCase = new ApplyFirstTimePromotionUseCase(databaseRepository, promotionService);
 export const activatePromotionUseCase = new ActivatePromotionUseCase(databaseRepository); 
+export const getStatusMembershipUseCase = new GetStatusMembershipUseCase(databaseMembershipRepository);
+export const addMembershipUseCase = new AddMembershipUseCase(databaseMembershipRepository, databaseRepository);
 
+export const addMembershipController = new AddMembershipController(addMembershipUseCase);
 export const singInUserController = new SignInUserController(singInUserCase, encriptServices, tokenServices);
 export const singUpUserController = new SignUpUserController(singUpUserCase, nodemailerEmailService, encriptServices, applyFirstTimePromotionUseCase);
 export const deleteUserController = new DeleteUserController(deleteUserUseCase);
@@ -56,3 +68,4 @@ export const activateUserController = new ActivateUserController(activateUserCas
 export const singOutUserController = new SignOutUserController(singOutUserCase);
 export const activatePromotionController = new ActivatePromotionController(activatePromotionUseCase); 
 export const getPromotionStatusController = new GetPromotionStatusController(databaseRepository);
+export const getStatusMembershipController = new GetStatusMembershipController(getStatusMembershipUseCase);
