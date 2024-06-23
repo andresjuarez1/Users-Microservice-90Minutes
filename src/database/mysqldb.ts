@@ -1,8 +1,6 @@
-// mysqldb.ts
 import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
 import { Signale } from 'signale';
-// import { getDatabaseCredentials, DatabaseCredentials } from '../aws/parameter';
 
 dotenv.config();
 
@@ -11,7 +9,6 @@ const signale = new Signale();
 let sequelize: Sequelize | null = null;
 
 async function initializeSequelize(): Promise<Sequelize> {
-    // const credentials: DatabaseCredentials = await getDatabaseCredentials();
     const credentials = {
         name: process.env.DB_DATABASE ||
             'user_management',
