@@ -14,13 +14,10 @@ export class CheckMembershipNotPaidRequest {
                 if (msg) {
                     signale.info('CheckMembershipNotPaid request received:', msg.content.toString());
                     const content: any = JSON.parse(msg.content.toString());
-                    
-                    // TODO: Implementar la lógica para verificar la membresía del usuario
-                    // Supongamos que el resultado de la lógica es `membershipData`
+                
                     const membershipData = {
                         userId: content.userId,
-                        isPaid: false,  // Ejemplo de dato, cambiar por la lógica real
-                        // Otros datos relevantes
+                        isPaid: false, 
                     };
                     
                     const responseMessage = JSON.stringify(membershipData);

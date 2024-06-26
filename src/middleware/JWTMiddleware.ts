@@ -39,7 +39,7 @@ class JWTMiddleware {
         if (!JWTMiddleware.JWT_SECRET) {
             throw new Error('JWT secret not configured');
         }
-        return jwt.sign(data, JWTMiddleware.JWT_SECRET, { expiresIn: '2h' });
+        return jwt.sign(data, JWTMiddleware.JWT_SECRET, { expiresIn: '2horas' });
     }
 
     public static async addToBlacklist(token: string): Promise<void> {

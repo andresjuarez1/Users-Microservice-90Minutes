@@ -14,7 +14,6 @@ export class UserMemberSaga {
                 if (msg) {
                     signale.info('Message received:', msg.content.toString());
                     const content:any = JSON.parse(msg.content.toString());
-                    // TODO: meter algun estado o estatus que valide que un usuario es miembro o no
                     signale.info('Message received:', content);
                     channel.ack(msg);
                 }

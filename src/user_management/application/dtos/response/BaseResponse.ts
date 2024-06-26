@@ -6,7 +6,8 @@ export class BaseResponse {
     success: boolean;
     statusCode: number;
 
-    constructor(data: any, message: string, success: boolean, statusCode:number) {        this.data = data;
+    constructor(data: any, message: string, success: boolean, statusCode: number) {        
+        this.data = data;
         this.data = data;
         this.message = message;
         this.success = success;

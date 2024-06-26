@@ -16,7 +16,7 @@ class UserEntity extends Model {
 }
 
 async function initializeModel() {
-    await initialize(); // Asegurar que sequelize esté inicializado
+    await initialize();
     if (!sequelize) {
         throw new Error('Sequelize no está inicializado');
     }
@@ -80,7 +80,7 @@ async function initializeModel() {
 
 initializeModel().catch(error => {
     console.error('Error initializing model:', error);
-    process.exit(1); // Terminar el proceso si la inicialización falla
+    process.exit(1); 
 });
 
 

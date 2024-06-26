@@ -14,7 +14,6 @@ export class SendMembershipData {
                 if (msg) {
                     signale.info('Membership data received:', msg.content.toString());
                     const content: any = JSON.parse(msg.content.toString());
-                    // TODO: Procesar los datos de membresía recibidos
                     signale.info('Processed membership data:', content);
                     channel.ack(msg);
                 }

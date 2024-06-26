@@ -37,7 +37,7 @@ async function initializeSequelize(): Promise<Sequelize> {
         await sequelizeInstance.authenticate();
         signale.success('Conexión a la base de datos exitosa');
     } catch (error) {
-        signale.error('Error al conectar a la base de datos:', error);
+        signale.error('Error al conectar a la base de datos', error);
         throw error;
     }
 
@@ -51,8 +51,8 @@ async function initialize() {
 }
 
 initialize().catch(error => {
-    signale.error('Error initializing Sequelize:', error);
-    process.exit(1); // Terminar el proceso si la inicialización falla
+    signale.error('Error initializing Sequelize', error);
+    process.exit(1);
 });
 
 export { sequelize, initialize };
