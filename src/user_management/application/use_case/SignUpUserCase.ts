@@ -5,7 +5,7 @@ import { BaseResponse } from "../dtos/response/BaseResponse";
 import { UserNotificationSaga } from "../../infraestructure/services/UserNotificationSaga";
 
 export class SignUpUserCase {
-    constructor(readonly userInterface: UserInterface) {}
+    constructor(readonly userInterface: UserInterface) { }
 
     async execute(req: Request): Promise<BaseResponse> {
         try {
@@ -18,7 +18,7 @@ export class SignUpUserCase {
             if (result) {
                 const notification = new UserNotificationSaga();
                 let response = UserDtoMapper.toUserResponse(result);
-                notification.sendNotificationNewUser(response.email, response.token);
+                notification.sendNotificationNewUser(response.email, response.token, response.name, response.address, response.lastName, response.uuid);
                 return new BaseResponse(response, 'User created successfully', true, 201);
             }
             return new BaseResponse(null, 'User not created', false, 400);
