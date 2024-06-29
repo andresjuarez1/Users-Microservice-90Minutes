@@ -27,6 +27,7 @@ import { PromotionService } from "../domain/services/PromotionService";
 import { ByEncryptServices } from "./services/ByEncryptServices";
 import { NodemailerEmailService } from "./services/NodemailerEmailService";
 import { TokenServices } from "./services/TokenServices";
+import { GetUserInfoSaga } from "./services/GetUserInfoRequestSaga";
 
 export const databaseRepository = new MysqlUserRepository();
 export const encriptServices = new ByEncryptServices();
@@ -56,3 +57,4 @@ export const activateUserController = new ActivateUserController(activateUserCas
 export const singOutUserController = new SignOutUserController(singOutUserCase);
 export const activatePromotionController = new ActivatePromotionController(activatePromotionUseCase); 
 export const getPromotionStatusController = new GetPromotionStatusController(databaseRepository);
+export const getUserInfoSaga = new GetUserInfoSaga(getUserUseCase);
