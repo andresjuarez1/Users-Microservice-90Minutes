@@ -34,7 +34,7 @@ export const nodemailerEmailService = new NodemailerEmailService();
 export const tokenServices = new TokenServices();
 export const promotionService = new PromotionService();
 
-export const singUpUserCase = new SignUpUserCase(databaseRepository);
+export const singUpUserCase = new SignUpUserCase(databaseRepository, promotionService);
 export const getUserUseCase = new GetByUserCase(databaseRepository);
 export const updateUserUseCase = new UpdateUserUseCase(databaseRepository);
 export const deleteUserUseCase = new DeleteUserCase(databaseRepository);
