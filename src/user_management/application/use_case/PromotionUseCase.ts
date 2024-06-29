@@ -15,7 +15,6 @@ export class ApplyFirstTimePromotionUseCase {
 
         const discount = this.promotionService.applyFirstTimePromotion(user);
 
-
         return discount;
     }
 }

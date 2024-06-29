@@ -1,5 +1,34 @@
 version: 0.2
 
+env:
+  parameter-store:
+    DB_HOST: "/90minutes/dev/services/users/database_host"
+    DB_USER: "/90minutes/dev/services/users/database_user"
+    DB_PASSWORD: "/90minutes/dev/services/users/database_password"
+    DB_DATABASE: "/90minutes/dev/services/users/database_name"
+    JWT_SECRET: "/90minutes/dev/services/users/JWT_SECRET"
+    EMAIL_HOST: "/90minutes/dev/services/users/EMAIL_HOST"
+    EMAIL_PORT: "/90minutes/dev/services/users/EMAIL_PORT"
+    EMAIL_USER: "/90minutes/dev/services/users/EMAIL_USER"
+    EMAIL_PASS: "/90minutes/dev/services/users/EMAIL_PASS"
+    TOKEN_LENGTH: "/90minutes/dev/services/users/TOKEN_LENGTH"
+    RABBITMQ_HOST: "/90minutes/dev/services/users/RABBITMQ_HOST"
+    RABBITMQ_PROTOCOL: "/90minutes/dev/services/users/RABBITMQ_PROTOCOL"
+    RABBITMQ_USER: "/90minutes/dev/services/users/RABBITMQ_USER"
+    RABBITMQ_PASS: "/90minutes/dev/services/users/RABBITMQ_PASS"
+    RABBITMQ_PORT: "/90minutes/dev/services/users/RABBITMQ_PORT"
+    RABBIT_EXCHANGE_NOTIFICATION: "/90minutes/dev/services/users/RABBIT_EXCHANGE_NOTIFICATION"
+    RABBIT_QUEUE_NEW_USER_NOTIFICATION: "/90minutes/dev/services/users/RABBIT_QUEUE_NEW_USER_NOTIFICATION"
+    RABBIT_ROUTING_KEY_USER_TOKEN: "/90minutes/dev/services/users/RABBIT_ROUTING_KEY_USER_TOKEN"
+    RABBIT_QUEUE_NEW_USER_PAYMENT: "/90minutes/dev/services/users/RABBIT_QUEUE_NEW_USER_PAYMENT"
+    RABBIT_ROUTING_KEY_USER_PAYMENT: "/90minutes/dev/services/users/RABBIT_ROUTING_KEY_USER_PAYMENT"
+    RABBIT_QUEUE_CHECK_MEMBERSHIP_NOT_PAID_REQ: "/90minutes/dev/services/users/RABBIT_QUEUE_CHECK_MEMBERSHIP_NOT_PAID_REQ"
+    RABBIT_QUEUE_CHECK_MEMBERSHIP_NOT_PAID_RES: "/90minutes/dev/services/users/RABBIT_QUEUE_CHECK_MEMBERSHIP_NOT_PAID_RES"
+    RABBIT_QUEUE_SEND_MEMBERSHIP_DATA: "/90minutes/dev/services/users/RABBIT_QUEUE_SEND_MEMBERSHIP_DATA"
+    RABBIT_ROUTING_KEY_CHECK_MEMBERSHIP_NOT_PAID_REQ: "/90minutes/dev/services/users/RABBIT_ROUTING_KEY_CHECK_MEMBERSHIP_NOT_PAID_REQ"
+    RABBIT_ROUTING_KEY_CHECK_MEMBERSHIP_NOT_PAID_RES: "/90minutes/dev/services/users/RABBIT_ROUTING_KEY_CHECK_MEMBERSHIP_NOT_PAID_RES"
+    RABBIT_ROUTING_KEY_SEND_MEMBERSHIP_DATA: "/90minutes/dev/services/users/RABBIT_ROUTING_KEY_SEND_MEMBERSHIP_DATA"
+
 phases:
   install:
     runtime-versions:
