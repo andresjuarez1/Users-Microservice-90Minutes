@@ -7,6 +7,7 @@ import { setupUserEndpoints } from './user_management/infraestructure/endpoints/
 import { sendMembershipData } from './user_management/infraestructure/Dependencies';
 
 import cors from 'cors';
+import { getUserInfoSaga } from './user_management/infraestructure/Dependencies';
 dotenv.config();
 
 const app = express();
@@ -22,6 +23,7 @@ setupUserEndpoints(app);
 let server = null;
 
 async function startServer() {
+    await getUserInfoSaga.execute();
     server = app.listen(PORT, HOST, () => {
         signale.success(`Server running on http://${HOST}:${PORT}`);
     });
